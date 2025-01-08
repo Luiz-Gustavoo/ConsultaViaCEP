@@ -16,7 +16,7 @@ public class ConsultaHTTP {
     }
 
     public String fazerRequisicao() throws IOException, InterruptedException {
-
+        try {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -27,6 +27,10 @@ public class ConsultaHTTP {
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
         return response.body();
+        } catch(RuntimeException e) {
+            System.out.println("Ocorreu um erro: " + e.getMessage());
+            return "Não foi possível consultar esse CEP";
+        }
     }
 }
 
