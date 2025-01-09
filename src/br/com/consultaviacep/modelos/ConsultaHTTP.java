@@ -1,5 +1,7 @@
 package br.com.consultaviacep.modelos;
 
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,7 +17,8 @@ public class ConsultaHTTP {
         this.endereco = ("https://viacep.com.br/ws/"+busca+"/json/");
     }
 
-    public String fazerRequisicao() throws IOException, InterruptedException {
+    public EnderecoViaCEP fazerRequisicao() throws IOException, InterruptedException {
+        Gson gson = new Gson();
         try {
         HttpClient client = HttpClient.newHttpClient();
 
@@ -26,10 +29,12 @@ public class ConsultaHTTP {
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
-        return response.body();
+        return gson.fromJson(response.body(), EnderecoViaCEP.class);
+
         } catch(RuntimeException e) {
             System.out.println("Ocorreu um erro: " + e.getMessage());
-            return "Não foi possível consultar esse CEP";
+
+            return null;
         }
     }
 }
