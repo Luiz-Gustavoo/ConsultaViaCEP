@@ -19,22 +19,25 @@ public class ConsultaHTTP {
 
     public EnderecoViaCEP fazerRequisicao() throws IOException, InterruptedException {
         Gson gson = new Gson();
-        try {
+
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(endereco))
                 .build();
 
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = null;
+
+        try {
+            response = client
+                    .send(request, HttpResponse.BodyHandlers.ofString());
 
         return gson.fromJson(response.body(), EnderecoViaCEP.class);
 
         } catch(RuntimeException e) {
-            System.out.println("Ocorreu um erro: " + e.getMessage());
+            System.out.println("Ocorreu um erro ao buscar o CEP");
 
-            return null;
+            return gson.fromJson(response.body(), EnderecoViaCEP.class);
         }
     }
 }
