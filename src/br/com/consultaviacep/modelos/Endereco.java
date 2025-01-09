@@ -1,11 +1,16 @@
 package br.com.consultaviacep.modelos;
 
 public class Endereco {
-    private String Cep;
+    private String cep;
     private String logradouro;
 
+    public Endereco(EnderecoViaCEP enderecoViaCEP) {
+        this.cep = enderecoViaCEP.cep();
+        this.logradouro = enderecoViaCEP.logradouro();
+    }
+
     public String getCep() {
-        return Cep;
+        return cep;
     }
 
     public String getLogradouro() {
@@ -14,7 +19,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "CEP: " + Cep +
+        return "CEP: " + cep +
           "\n" + "Complemento: " + logradouro;
     }
 }
