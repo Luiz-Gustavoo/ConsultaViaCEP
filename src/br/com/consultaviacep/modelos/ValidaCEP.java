@@ -8,15 +8,18 @@ public class ValidaCEP {
     }
 
     public boolean validaCEP(String cep) {
-        if (cep.length() != 8) {
-            mensagemValidacao = "O CEP não possui 8 dígitos";
-            return false;
-        }
 
         if (cep.isEmpty()) {
             mensagemValidacao = "O CEP não pode ser vazio";
             return false;
         }
+
+        if (cep.length() != 8) {
+            mensagemValidacao = "O CEP não possui 8 dígitos";
+            return false;
+        }
+
+
         return true;
     }
 }
