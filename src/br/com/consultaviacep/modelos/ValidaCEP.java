@@ -11,8 +11,12 @@ public class ValidaCEP {
         if (cep.length() != 8) {
             mensagemValidacao = "O CEP não possui 8 dígitos";
             return false;
-        } else {
-            return true;
         }
+
+        if (cep.isEmpty()) {
+            mensagemValidacao = "O CEP não pode ser vazio";
+            return false;
+        }
+        return true;
     }
 }
