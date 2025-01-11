@@ -19,7 +19,7 @@ public class ValidaCEP {
             return false;
         }
 
-        if (!cep.matches("^\\d$") ) {
+        if (!cep.matches("^\\d{8}$") ) {
             mensagemValidacao = "O CEP deve possuir apenas números";
             return false;
         }
