@@ -11,10 +11,10 @@ public class Principal {
 
         while (!busca.equalsIgnoreCase("sair")) {
             LerCEP lerCEP = new LerCEP();
-             busca = lerCEP.lerCEP();
-             if(busca.equalsIgnoreCase("sair")) {
-                 break;
-             }
+            busca = lerCEP.lerCEP();
+            if (busca.equalsIgnoreCase("sair")) {
+                break;
+            }
 
             ResultadoValidaCEP resultadoValidaCEP = CEPChecker.lerCEP(busca);
             if (!resultadoValidaCEP.isResultadoValidaCEP()) {
@@ -29,6 +29,6 @@ public class Principal {
 
             }
         }
-    }    }
-
+    }
+}
 
