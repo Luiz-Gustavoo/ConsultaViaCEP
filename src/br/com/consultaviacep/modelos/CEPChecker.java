@@ -2,7 +2,7 @@ package br.com.consultaviacep.modelos;
 
 import br.com.consultaviacep.excecoes.CEPinvalidoExcepton;
 
-public class LerCEP {
+public class CEPChecker {
 
     public static ResultadoValidaCEP lerCEP(String cep) {
         ValidaCEP validaCEP = new ValidaCEP();
