@@ -1,11 +1,10 @@
 package br.com.consultaviacep.principal;
 import br.com.consultaviacep.modelos.*;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 
 
 public class Principal {
@@ -31,7 +30,6 @@ public class Principal {
                 Endereco endereco = new Endereco(enderecoViaCEP);
                 listaEndereco.add(endereco);
             }
-
         }
         EscreverEnderecos escreverEnderecos = new EscreverEnderecos();
         String salvarEnderecos = escreverEnderecos.escreverEnderecos(listaEndereco);
