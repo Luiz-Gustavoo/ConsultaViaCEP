@@ -1,25 +1,34 @@
 package br.com.consultaviacep.principal;
 import br.com.consultaviacep.modelos.*;
 import java.io.IOException;
+import java.util.Scanner;
 
 
 public class Principal {
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        String busca = "1";
-        ResultadoValidaCEP resultadoValidaCEP = LerCEP.lerCEP(busca);
-        if (!resultadoValidaCEP.isResultadoValidaCEP()) {
-            System.out.println("Não foi possível validar esse CEP");
-        } else {
+        String busca = "";
 
-            ConsultaHTTP consultaHTTP = new ConsultaHTTP(busca);
-            EnderecoViaCEP enderecoViaCEP = consultaHTTP.fazerRequisicao();
+        while (!busca.equalsIgnoreCase("sair")) {
+            LerCEP lerCEP = new LerCEP();
+             busca = lerCEP.lerCEP();
+             if(busca.equalsIgnoreCase("sair")) {
+                 break;
+             }
 
-            Endereco endereco = new Endereco(enderecoViaCEP);
-            System.out.println(endereco);
+            ResultadoValidaCEP resultadoValidaCEP = CEPChecker.lerCEP(busca);
+            if (!resultadoValidaCEP.isResultadoValidaCEP()) {
+                System.out.println("Não foi possível validar esse CEP");
+            } else {
 
+                ConsultaHTTP consultaHTTP = new ConsultaHTTP(busca);
+                EnderecoViaCEP enderecoViaCEP = consultaHTTP.fazerRequisicao();
+
+                Endereco endereco = new Endereco(enderecoViaCEP);
+                System.out.println(endereco);
+
+            }
         }
-    }
-    }
+    }    }
 
 
